@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMA Mastery - Tiered Training Program</title>
+    <style>
+        :root {
+            --primary: #e63946;
+            --secondary: #1d3557;
+            --light: #f1faee;
+            --accent: #a8dadc;
+            --dark: #457b9d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(rgba(29, 53, 87, 0.9), rgba(29, 53, 87, 0.9)), 
+                        url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        
+        nav {
+            background-color: var(--secondary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 1rem 0;
+        }
+        
+        nav li {
+            margin: 0 1rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: var(--primary);
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+            margin-top: 2rem;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #c1121f;
+            transform: translateY(-2px);
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .tiers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .tier-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .tier-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .tier-card-header {
+            background-color: var(--secondary);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .tier-card-body {
+            padding: 1.5rem;
+        }
+        
+        .tier-card-body ul {
+            list-style-position: inside;
+            margin-bottom: 1rem;
+        }
+        
+        .tier-card-body li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .module {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .schedule {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .day {
+            background-color: var(--accent);
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .day h4 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .resources {
+            background-color: var(--light);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .resources h4 {
+            margin-bottom: 1rem;
+        }
+        
+        .resources a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .resources a:hover {
+            text-decoration: underline;
+        }
+        
+        .assessment {
+            background-color: #e8f4f8;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .assessment h4 {
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        /* Mobile menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+            overflow: auto;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--secondary);
+                padding: 1rem 0;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav li {
+                margin: 0.5rem 0;
+                text-align: center;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>MMA Mastery</h1>
+            <p>Structured, tiered training program from beginner to professional</p>
+            <a href="#tiers" class="btn">Explore Tiers</a>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <button class="mobile-menu-btn">☰</button>
+            <ul id="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#tiers">Training Tiers</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="container">
+        <section id="home" class="hero">
+            <h2>Your Path to MMA Excellence</h2>
+            <p>Our comprehensive 5-tier training program is designed to take you from complete beginner to professional fighter and beyond. Each tier builds on the last, ensuring a solid foundation and progressive skill development.</p>
+            <a href="#tiers" class="btn">Start Your Journey</a>
+        </section>
+        
+        <section id="tiers">
+            <h2>Training Tiers</h2>
+            <p>Click on any tier to see detailed information about the program</p>
+            
+            <div class="tiers">
+                <div class="tier-card" onclick="openModal('tier1')">
+                    <div class="tier-card-header" style="background-color: #cd7f32;">
+                        🥇 Tier 1: Beginner
+                    </div>
+                    <div class="tier-card-body">
+                        <h3>Establishing Fundamentals</h3>
+                        <p>Develop basic techniques, movement, and understanding of MMA principles.</p>
+                        <ul>
+                            <li>Stance & Movement</li>
+                            <li>Striking Basics</li>
+                            <li>Grappling Introduction</li>
+                            <li>Conditioning</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="tier-card" onclick="openModal('tier2')">
+                    <div class="tier-card-header" style="background-color: #c0c0c0;">
+                        🥈 Tier 2: Intermediate
+                    </div>
+                    <div class="tier-card-body">
+                        <h3>Skill Integration</h3>
+                        <p>Combine techniques, improve timing, and understand fight dynamics.</p>
+                        <ul>
+                            <li>Advanced Striking</li>
+                            <li>Grappling Techniques</li>
+                            <li>Clinch Work</li>
+                            <li>Sparring</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="tier-card" onclick="openModal('tier3')">
+                    <div class="tier-card-header" style="background-color: #ffd700;">
+                        🥉 Tier 3: Advanced
+                    </div>
+                    <div class="tier-card-body">
+                        <h3>Strategic Application</h3>
+                        <p>Develop fight strategies, adapt to opponents, and refine techniques.</p>
+                        <ul>
+                            <li>Fight Strategy</li>
+                            <li>Advanced Grappling</li>
+                            <li>Striking Under Pressure</li>
+                            <li>Mental Preparation</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="tier-card" onclick="openModal('tier4')">
+                    <div class="tier-card-header" style="background-color: #e5e4e2;">
+                        🏆 Tier 4: Professional
+                    </div>
+                    <div class="tier-card-body">
+                        <h3>Fight Preparation</h3>
+                        <p>Prepare for competitive fights, focusing on peak performance and recovery.</p>
+                        <ul>
+                            <li>Fight Camp Planning</li>
+                            <li>Technical Sparring</li>
+                            <li>Nutrition & Hydration</li>
+                            <li>Mental Fortitude</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="tier-card" onclick="openModal('tier5')">
+                    <div class="tier-card-header" style="background-color: #b9f2ff;">
+                        🎓 Tier 5: Instructor
+                    </div>
+                    <div class="tier-card-body">
+                        <h3>Coaching & Mentorship</h3>
+                        <p>Learn to teach and develop future fighters with comprehensive coaching skills.</p>
+                        <ul>
+                            <li>Curriculum Development</li>
+                            <li>Cornering & Coaching</li>
+                            <li>Leadership & Mentorship</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="resources">
+            <h2>Additional Resources</h2>
+            <div class="resources">
+                <h4>Recommended Reading</h4>
+                <ul>
+                    <li>"The Fighter's Mind" by Sam Sheridan</li>
+                    <li>"Training and Conditioning for MMA" - Human Kinetics</li>
+                    <li>"The Art of Learning" by Josh Waitzkin</li>
+                </ul>
+                
+                <h4>Online Courses</h4>
+                <ul>
+                    <li><a href="https://www.mittmaster.com/courses/100-mma-lesson-plans" target="_blank">100 MMA Lesson Plans</a></li>
+                    <li><a href="https://www.gracieuniversity.com/" target="_blank">Gracie University Teaching Modules</a></li>
+                </ul>
+                
+                <h4>YouTube Channels</h4>
+                <ul>
+                    <li><a href="https://www.youtube.com/playlist?list=PLlF2Xq8aFHDW8ER9MBmXzzPU6lKqEOBZx" target="_blank">Boxing Fundamentals</a></li>
+                    <li><a href="https://www.youtube.com/playlist?list=PLgNSGOEQko_MSr2bqaJ4oQTVSmuNXO3SE" target="_blank">Muay Thai Mastery</a></li>
+                    <li><a href="https://www.youtube.com/playlist?list=PLZlE8RCpN3OTWnvbKJTZ0n_NX8KHqFcLU" target="_blank">BJJ Transitions</a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Modal for Tier Details -->
+    <div id="tierModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modal-content">
+                <!-- Content will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <footer id="contact">
+        <div class="container">
+            <h3>MMA Mastery Training Program</h3>
+            <p>Contact us: info@mmamastery.com</p>
+            <p>&copy; 2023 MMA Mastery. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('nav-menu').classList.toggle('show');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                document.getElementById('nav-menu').classList.remove('show');
+            });
+        });
+        
+        // Modal functions
+        function openModal(tier) {
+            const modal = document.getElementById('tierModal');
+            const modalContent = document.getElementById('modal-content');
+            
+            // Set content based on which tier was clicked
+            switch(tier) {
+                case 'tier1':
+                    modalContent.innerHTML = `
+                        <h2>🥇 Tier 1: Beginner – Establishing Fundamentals</h2>
+                        <p><strong>Objective:</strong> Develop basic techniques, movement, and understanding of MMA principles.</p>
+                        
+                        <div class="module">
+                            <h3>🧱 Modules</h3>
+                            <h4>1. Stance & Movement</h4>
+                            <ul>
+                                <li>Orthodox and southpaw stances</li>
+                                <li>Footwork drills</li>
+                                <li>Balance and coordination exercises</li>
+                            </ul>
+                            
+                            <h4>2. Striking Basics</h4>
+                            <ul>
+                                <li>Jab, cross, hook, uppercut</li>
+                                <li>Basic combinations</li>
+                                <li>Introduction to kicks (front, roundhouse)</li>
+                            </ul>
+                            
+                            <h4>3. Grappling Introduction</h4>
+                            <ul>
+                                <li>Takedown defense</li>
+                                <li>Basic clinch positions</li>
+                                <li>Escapes from common holds</li>
+                            </ul>
+                            
+                            <h4>4. Conditioning</h4>
+                            <ul>
+                                <li>Cardiovascular training</li>
+                                <li>Bodyweight strength exercises</li>
+                                <li>Flexibility routines</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>🗓️ Weekly Schedule</h3>
+                            <div class="schedule">
+                                <div class="day">
+                                    <h4>Monday</h4>
+                                    <p>Striking techniques</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Tuesday</h4>
+                                    <p>Grappling fundamentals</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Wednesday</h4>
+                                    <p>Conditioning</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Thursday</h4>
+                                    <p>Striking combinations</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Friday</h4>
+                                    <p>Grappling drills</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Saturday</h4>
+                                    <p>Sparring (light)</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Sunday</h4>
+                                    <p>Rest and recovery</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="assessment">
+                            <h3>✅ Assessment</h3>
+                            <ul>
+                                <li>Demonstrate basic strikes with proper form</li>
+                                <li>Execute fundamental grappling escapes</li>
+                                <li>Complete a 3-minute round of shadowboxing</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="resources">
+                            <h3>📚 Resources</h3>
+                            <h4>Videos:</h4>
+                            <ul>
+                                <li><a href="https://www.youtube.com/watch?v=pmyLkkU_F1o" target="_blank">Basic Striking Techniques</a></li>
+                                <li><a href="https://www.youtube.com/watch?v=F1w4WXkuc6Y" target="_blank">Grappling Fundamentals</a></li>
+                            </ul>
+                            
+                            <h4>Reading:</h4>
+                            <ul>
+                                <li>"MMA for Beginners" – Engage Industries</li>
+                            </ul>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'tier2':
+                    modalContent.innerHTML = `
+                        <h2>🥈 Tier 2: Intermediate – Skill Integration</h2>
+                        <p><strong>Objective:</strong> Combine techniques, improve timing, and understand fight dynamics.</p>
+                        
+                        <div class="module">
+                            <h3>🧱 Modules</h3>
+                            <h4>1. Advanced Striking</h4>
+                            <ul>
+                                <li>Combination drills</li>
+                                <li>Counter-striking</li>
+                                <li>Angles and movement</li>
+                            </ul>
+                            
+                            <h4>2. Grappling Techniques</h4>
+                            <ul>
+                                <li>Takedowns and throws</li>
+                                <li>Submission holds</li>
+                                <li>Transitioning between positions</li>
+                            </ul>
+                            
+                            <h4>3. Clinch Work</h4>
+                            <ul>
+                                <li>Control and positioning</li>
+                                <li>Knees and elbows</li>
+                                <li>Defense against clinch attacks</li>
+                            </ul>
+                            
+                            <h4>4. Sparring</h4>
+                            <ul>
+                                <li>Controlled sparring sessions</li>
+                                <li>Situational drills</li>
+                                <li>Feedback and analysis</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>🗓️ Weekly Schedule</h3>
+                            <div class="schedule">
+                                <div class="day">
+                                    <h4>Monday</h4>
+                                    <p>Striking combinations</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Tuesday</h4>
+                                    <p>Grappling techniques</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Wednesday</h4>
+                                    <p>Clinch drills</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Thursday</h4>
+                                    <p>Sparring</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Friday</h4>
+                                    <p>Conditioning</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Saturday</h4>
+                                    <p>Technical review</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Sunday</h4>
+                                    <p>Rest</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="assessment">
+                            <h3>✅ Assessment</h3>
+                            <ul>
+                                <li>Execute 3-strike combinations with fluidity</li>
+                                <li>Demonstrate basic takedowns and submissions</li>
+                                <li>Participate in controlled sparring, applying techniques</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="resources">
+                            <h3>📚 Resources</h3>
+                            <h4>Courses:</h4>
+                            <ul>
+                                <li><a href="https://www.mittmaster.com/courses/100-mma-lesson-plans" target="_blank">100 MMA Lesson Plans</a></li>
+                            </ul>
+                            
+                            <h4>Videos:</h4>
+                            <ul>
+                                <li><a href="https://www.youtube.com/watch?v=aVNOrxLrM6g" target="_blank">Intermediate Striking Drills</a></li>
+                            </ul>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'tier3':
+                    modalContent.innerHTML = `
+                        <h2>🥉 Tier 3: Advanced – Strategic Application</h2>
+                        <p><strong>Objective:</strong> Develop fight strategies, adapt to opponents, and refine techniques.</p>
+                        
+                        <div class="module">
+                            <h3>🧱 Modules</h3>
+                            <h4>1. Fight Strategy</h4>
+                            <ul>
+                                <li>Analyzing opponents</li>
+                                <li>Developing game plans</li>
+                                <li>Adjusting tactics mid-fight</li>
+                            </ul>
+                            
+                            <h4>2. Advanced Grappling</h4>
+                            <ul>
+                                <li>Chain submissions</li>
+                                <li>Reversals and counters</li>
+                                <li>Dominant position control</li>
+                            </ul>
+                            
+                            <h4>3. Striking Under Pressure</h4>
+                            <ul>
+                                <li>High-intensity drills</li>
+                                <li>Defensive maneuvers</li>
+                                <li>Counterattacks</li>
+                            </ul>
+                            
+                            <h4>4. Mental Preparation</h4>
+                            <ul>
+                                <li>Visualization techniques</li>
+                                <li>Stress management</li>
+                                <li>Focus and concentration drills</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>🗓️ Weekly Schedule</h3>
+                            <div class="schedule">
+                                <div class="day">
+                                    <h4>Monday</h4>
+                                    <p>Strategy development</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Tuesday</h4>
+                                    <p>Advanced grappling</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Wednesday</h4>
+                                    <p>Striking under pressure</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Thursday</h4>
+                                    <p>Sparring sessions</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Friday</h4>
+                                    <p>Mental training</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Saturday</h4>
+                                    <p>Technical refinement</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Sunday</h4>
+                                    <p>Active recovery</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="assessment">
+                            <h3>✅ Assessment</h3>
+                            <ul>
+                                <li>Create and execute a fight strategy</li>
+                                <li>Demonstrate advanced grappling transitions</li>
+                                <li>Maintain composure under sparring pressure</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="resources">
+                            <h3>📚 Resources</h3>
+                            <h4>Books:</h4>
+                            <ul>
+                                <li>"The Fighter's Mind" by Sam Sheridan</li>
+                            </ul>
+                            
+                            <h4>Videos:</h4>
+                            <ul>
+                                <li><a href="https://www.youtube.com/watch?v=miu1pm5O8XQ" target="_blank">Advanced MMA Techniques</a></li>
+                            </ul>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'tier4':
+                    modalContent.innerHTML = `
+                        <h2>🏆 Tier 4: Professional – Fight Preparation</h2>
+                        <p><strong>Objective:</strong> Prepare for competitive fights, focusing on peak performance and recovery.</p>
+                        
+                        <div class="module">
+                            <h3>🧱 Modules</h3>
+                            <h4>1. Fight Camp Planning</h4>
+                            <ul>
+                                <li>Periodization of training</li>
+                                <li>Weight management</li>
+                                <li>Recovery protocols</li>
+                            </ul>
+                            
+                            <h4>2. Technical Sparring</h4>
+                            <ul>
+                                <li>Simulated fight scenarios</li>
+                                <li>Opponent-specific strategies</li>
+                                <li>High-intensity rounds</li>
+                            </ul>
+                            
+                            <h4>3. Nutrition & Hydration</h4>
+                            <ul>
+                                <li>Meal planning</li>
+                                <li>Supplementation</li>
+                                <li>Hydration strategies</li>
+                            </ul>
+                            
+                            <h4>4. Mental Fortitude</h4>
+                            <ul>
+                                <li>Confidence building</li>
+                                <li>Handling pressure</li>
+                                <li>Focus techniques</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>🗓️ Weekly Schedule</h3>
+                            <div class="schedule">
+                                <div class="day">
+                                    <h4>Monday</h4>
+                                    <p>Technical sparring</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Tuesday</h4>
+                                    <p>Conditioning</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Wednesday</h4>
+                                    <p>Strategy sessions</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Thursday</h4>
+                                    <p>Sparring</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Friday</h4>
+                                    <p>Recovery</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Saturday</h4>
+                                    <p>Simulation fights</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Sunday</h4>
+                                    <p>Rest</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="assessment">
+                            <h3>✅ Assessment</h3>
+                            <ul>
+                                <li>Successfully complete a simulated fight camp</li>
+                                <li>Demonstrate peak physical conditioning</li>
+                                <li>Exhibit mental readiness for competition</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="resources">
+                            <h3>📚 Resources</h3>
+                            <h4>Articles:</h4>
+                            <ul>
+                                <li><a href="https://themmatrainingbible.com/periodization-in-mma-part-2-how-to-plan-training-phases/" target="_blank">Periodization in MMA</a></li>
+                            </ul>
+                            
+                            <h4>Books:</h4>
+                            <ul>
+                                <li>"Training and Conditioning for MMA" – Human Kinetics</li>
+                            </ul>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'tier5':
+                    modalContent.innerHTML = `
+                        <h2>🎓 Tier 5: Instructor – Coaching & Mentorship</h2>
+                        <p><strong>Objective:</strong> Learn to teach and develop future fighters with comprehensive coaching skills.</p>
+                        
+                        <div class="module">
+                            <h3>🧱 Modules</h3>
+                            <h4>1. Curriculum Development</h4>
+                            <ul>
+                                <li>Structuring training programs by level (Beginner → Pro)</li>
+                                <li>Identifying learning styles</li>
+                                <li>Progress tracking systems for students</li>
+                            </ul>
+                            
+                            <h4>2. Cornering & Coaching</h4>
+                            <ul>
+                                <li>Live fight coaching techniques</li>
+                                <li>Managing stress and communication in corners</li>
+                                <li>Post-fight analysis and feedback delivery</li>
+                            </ul>
+                            
+                            <h4>3. Leadership & Mentorship</h4>
+                            <ul>
+                                <li>Guiding fighters on mental, physical, and personal growth</li>
+                                <li>Conflict management and motivation</li>
+                                <li>Building a healthy gym culture</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>🗓️ Weekly Instructor Schedule</h3>
+                            <div class="schedule">
+                                <div class="day">
+                                    <h4>Monday</h4>
+                                    <p>Co-teaching sessions (Beginner class)</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Tuesday</h4>
+                                    <p>Fighter mentorship + curriculum design</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Wednesday</h4>
+                                    <p>Sparring analysis & coaching</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Thursday</h4>
+                                    <p>Observe/lead intermediate class</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Friday</h4>
+                                    <p>Coach's feedback roundtable</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Saturday</h4>
+                                    <p>Live sparring & fighter evaluations</p>
+                                </div>
+                                <div class="day">
+                                    <h4>Sunday</h4>
+                                    <p>Documentation, rest, and self-development</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="assessment">
+                            <h3>✅ Assessment</h3>
+                            <ul>
+                                <li>Run a structured class solo for any tier</li>
+                                <li>Design a full 6-week training curriculum</li>
+                                <li>Successfully corner 1 simulated and 1 real fight</li>
+                                <li>Receive peer and student feedback on teaching approach</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="resources">
+                            <h3>📚 Resources</h3>
+                            <h4>Books:</h4>
+                            <ul>
+                                <li>"The Art of Learning" by Josh Waitzkin</li>
+                                <li>"Winning: The Unforgiving Race to Greatness" by Tim S. Grover</li>
+                            </ul>
+                            
+                            <h4>Courses:</h4>
+                            <ul>
+                                <li><a href="https://www.mittmaster.com/" target="_blank">Mittmaster Coaching Certification</a></li>
+                                <li><a href="https://www.gracieuniversity.com/" target="_blank">Gracie University Teaching Modules</a></li>
+                            </ul>
+                            
+                            <h4>Video Series:</h4>
+                            <ul>
+                                <li><a href="https://www.youtube.com/watch?v=9diZ8WvR4Wc" target="_blank">John Danaher: How to Structure a BJJ Class</a></li>
+                                <li><a href="https://www.youtube.com/watch?v=cu3Wl-LDgxA" target="_blank">Cornering Tips for Coaches</a></li>
+                            </ul>
+                        </div>
+                    `;
+                    break;
+            }
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('tierModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+        
+        // Close modal when clicking outside content
+        window.onclick = function(event) {
+            const modal = document.getElementById('tierModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
